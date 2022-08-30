@@ -1,0 +1,57 @@
+
+      <div class="container pt-5">
+          <div class="row justify-content-sm-end pt-5"  >
+              <div class="col-sm-6 shadow round pb-3" >
+                <h1 class="text-center pt-3 text-secondary">Cotización</h1>
+                  <form [formGroup]="exform">
+                    <div class="form-group">
+                      <label class="col-form-label">Selecciona Modelo:</label>
+                      <select formControlName="datos_modelo" class="form-select" >
+                        <option *ngFor="let m of modelos" [value]="m.subtitle">{{m.subtitle}}</option>
+
+                      </select>
+                      <small *ngIf="datos_modelo?.invalid && datos_modelo?.touched" class="text-danger"> El modelo es requerido</small> 
+                    </div>
+                      <div class="form-group">
+                        <label class="col-form-label">Nombre Completo:</label>
+                        <input formControlName="nombre_completo" type="text" class="form-control">
+                        <small *ngIf="nombre_completo?.invalid && nombre_completo?.touched" class="text-danger">El nombre es requerido</small> 
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label">Email:</label>
+                        <input formControlName="email" type="text" class="form-control" >
+                        <small *ngIf="email?.invalid && email?.touched" class="text-danger">Email es Requiredo</small>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label">Número Celular:</label>
+                        <input formControlName="celular" type="text" class="form-control" >
+                        <small *ngIf="celular?.invalid && celular?.touched" class="text-danger">celular es Required(minimo 10,numeros solamente)</small>
+                      </div>
+                     
+                      <div class="form-group">                    
+                          <label class="col-form-label">Departamentos:</label>
+                          <select formControlName="departamento" class="form-select" (change)="getCiudadesDep($event)" >
+                              <option *ngFor="let d of departamentos" [value]="d.id">{{d.nombre}}</option>
+                            </select>                    
+                        </div>
+                      <div class="form-group">
+                          <label class="col-form-label">Ciudad:</label>
+                          <select formControlName="ciudad_id" class="form-select" >
+                            <option [value]="c.id" *ngFor="let c of ciudades">{{c.nombre}}</option>
+                          </select>
+                          <small *ngIf="ciudad_id?.invalid && ciudad_id?.touched" class="text-danger"> La Ciudad es requerida</small> 
+                        </div>
+                        <div class="form-group pt-3">
+                          <input type="checkbox" formControlName="acepta_terminos" [(ngModel)]="acepta" class="form-check-input">                     
+                            &nbsp;<a  aria-hidden="true" class="link-secondary"
+                              target="_blank"
+                              [href]="url">Acepta Terminos y condiciones
+                              </a>                 
+                        </div>
+                        <div class="form-group pt-3" *ngIf="acepta">
+                          <button (click)="clicksub()" [disabled]="exform.invalid" type="button" class="btn btn-primary">Enviar Datos</button>
+                        </div>
+                    </form>
+              </div>
+          </div>
+        </div>

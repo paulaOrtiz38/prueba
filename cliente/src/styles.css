@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+.common-img-bg {
+    background-size: cover;
+    background: url(assets/images/imagen.jpg) no-repeat center center fixed;
+    height: 100%;
+  }
